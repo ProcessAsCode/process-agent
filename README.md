@@ -1,5 +1,7 @@
 # PaC Process Agent
 
+[![CI](https://github.com/ProcessAsCode/process-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/ProcessAsCode/process-agent/actions/workflows/ci.yml)
+
 A governed AI agent that executes [UAPF](https://github.com/UAPFormat/UAPF-specification) process packages. It acts as a **UAPF-IP host**: it starts sessions in a process runtime, and the runtime calls back into the agent for every service and user task. Part of the [Process-as-Code](https://github.com/ProcessAsCode) stack.
 
 The agent contains **no process logic**. What happens, in which order and under which rules is defined in the UAPF package (BPMN, DMN, guardrails) that the runtime executes. The agent supplies capabilities — AI, human tasks, events, access to systems — and enforces the session guardrails on each of them.
