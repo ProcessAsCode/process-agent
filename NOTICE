@@ -1,0 +1,16 @@
+PaC Process Agent
+Copyright (c) 2026 Cyberfort SIA, Latvia.
+
+Licensed under the Apache License, Version 2.0 - see LICENSE.
+Part of the Process-as-Code open-source stack: https://github.com/ProcessAsCode
+
+Written against the public UAPF-IP specification
+(https://github.com/UAPFormat/UAPF-IP, MIT) and the Model Context Protocol.
+
+--------------------------------------------------------------------------
+THIRD-PARTY DEPENDENCIES
+--------------------------------------------------------------------------
+
+This project depends on third-party open-source packages declared in
+package.json (@modelcontextprotocol/sdk, yaml, zod). Each remains under its
+own licence. Dependencies are not vendored into this repository.

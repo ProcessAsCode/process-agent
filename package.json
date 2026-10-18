@@ -1,0 +1,37 @@
+{
+  "name": "process-agent",
+  "version": "0.1.0",
+  "description": "PaC Process Agent: a governed AI agent that executes UAPF processes as a UAPF-IP host, with process, systems and trust connectors",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "src/server.js",
+  "bin": {
+    "process-agent-mcp": "src/mcp.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "mcp": "node src/mcp.js",
+    "test": "node --test test/"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProcessAsCode/process-agent.git"
+  },
+  "keywords": [
+    "uapf",
+    "uapf-ip",
+    "process-as-code",
+    "ai-agent",
+    "mcp",
+    "bpmn",
+    "dmn"
+  ]
+}

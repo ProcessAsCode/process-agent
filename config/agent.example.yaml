@@ -1,0 +1,50 @@
+# process-agent configuration (copy to config/agent.yaml).
+# Secrets are never written here: each *Env key names the environment
+# variable that holds the value.
+
+agent:
+  id: process-agent
+  did: did:web:agent.example.org          # identity advertised in the host manifest
+  listen: { host: 0.0.0.0, port: 4100 }
+  publicBaseUrl: http://process-agent:4100 # address the process runtime calls back
+  apiTokenEnv: AGENT_API_TOKEN              # required for /agent/*
+  hostTokenEnv: AGENT_HOST_TOKEN            # optional bearer token for /uapf/host/*
+
+engine:
+  url: http://uapf-engine:4000              # any UAPF-IP runtime (REST binding)
+  timeoutMs: 120000
+
+llm:
+  baseUrl: http://llm-gateway:8000/v1       # OpenAI-compatible gateway
+  apiKeyEnv: LLM_API_KEY
+  defaultModel: example-model               # used when the guardrails name no model
+  timeoutMs: 60000
+
+trust:
+  auditLog: ./data/audit.jsonl              # hash-chained audit log
+  eventSignerUrl: ""                        # e.g. http://event-signer:3100
+
+memory:
+  file: ./data/memory.json
+
+# data.* and document.* capabilities are served by MCP tools of the
+# organisation's own systems. Only bound capabilities are advertised.
+# The server and tool names below are illustrative; use the tools your
+# systems actually expose.
+systems:
+  servers:
+    dms:
+      url: http://opendms:8000/mcp
+      authEnv: DMS_MCP_TOKEN
+  bindings:
+    "document.fetch@1":
+      server: dms
+      tool: get_document
+      args: { id: "$.documentId" }
+    "document.store@1":
+      server: dms
+      tool: create_document
+    "data.query@1":
+      server: dms
+      tool: search_documents
+      args: { query: "$.filter", limit: "$.limit" }

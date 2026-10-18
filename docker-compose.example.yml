@@ -1,0 +1,20 @@
+# process-agent alone. It expects a UAPF-IP runtime (e.g. uapf-engine), an
+# OpenAI-compatible LLM gateway and, optionally, the event signer and your
+# systems' MCP servers to be reachable on the same network.
+
+services:
+  process-agent:
+    build: .
+    env_file: .env
+    environment:
+      AGENT_CONFIG: /app/config/agent.yaml
+      AGENT_PUBLIC_URL: http://process-agent:4100
+      ENGINE_URL: ${ENGINE_URL:-http://uapf-engine:4000}
+    volumes:
+      - ./config/agent.yaml:/app/config/agent.yaml:ro
+      - agent-data:/app/data
+    ports:
+      - "127.0.0.1:4100:4100"
+
+volumes:
+  agent-data:
